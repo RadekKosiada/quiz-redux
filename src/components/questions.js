@@ -6,17 +6,19 @@ export default class Questions extends React.Component {
     this.state = {
       winCondition: 5, 
       allQuestions: [],
-      singleQuestion: ''
+      firstQuestion: '',
+      firstAnswer: ''
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     fetch('http://jservice.io/api/random/?count=' + this.state.winCondition)
       .then(response =>  response.json())
       .then(data => {
         console.log(data)
         this.setState({
           allQuestions: data,
-          singleQuestion: data[0].question
+          firstQuestion: data[0].question,
+          firstAnswer: data[0].answer,
         })
         console.log(typeof this.state.allQuestions[0].question)
       })
@@ -27,7 +29,8 @@ export default class Questions extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.state.singleQuestion}</p>
+        <p>{this.state.firstQuestion}</p>
+        <p>{this.state.firstAnswer}</p>
       </div>
     )
   }
