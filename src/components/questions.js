@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchQuestions } from '../actions';
@@ -35,10 +35,10 @@ class Questions extends React.Component {
     this.props.fetchQuestions()
   }
   render() {
-    const questionItems = this.state.questions.map(question => (
+    const questionItems = this.props.questions.map(question => (
       <div>
-        <h3>{question.question}</h3>
-        <p>{question.answer}</p>
+        <h3>{question}</h3>
+        <p>{question}</p>
       </div>
     ))
 
@@ -52,9 +52,9 @@ class Questions extends React.Component {
   }
 }
 
-Questions.PropTypes = {
-  fetchQuestions: PropTypes.func.isRequired,
-  questions: PropTypes.array.isRequired
+Questions.propTypes = {
+  fetchQuestions: propTypes.func.isRequired,
+  questions: propTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({

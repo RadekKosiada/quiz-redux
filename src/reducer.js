@@ -1,4 +1,4 @@
-import { FETCH_QUESTIONS, SUBMIT_ANSWER } from 'actions';
+import { FETCH_QUESTIONS, SUBMIT_ANSWER } from './actions';
 
 const initialState = {
   questions: [],
