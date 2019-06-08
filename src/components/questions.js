@@ -10,22 +10,22 @@ export default class Questions extends React.Component {
       firstAnswer: ''
     }
   }
-  componentDidMount() {
-    fetch('http://jservice.io/api/random/?count=' + this.state.winCondition)
-      .then(response =>  response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({
-          allQuestions: data,
-          firstQuestion: data[0].question,
-          firstAnswer: data[0].answer,
-        })
-        console.log(typeof this.state.allQuestions[0].question)
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
-    }
+  // componentDidMount() {
+  //   fetch('http://jservice.io/api/random/?count=' + this.state.winCondition)
+  //     .then(response =>  response.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       this.setState({
+  //         allQuestions: data,
+  //         firstQuestion: data[0].question,
+  //         firstAnswer: data[0].answer,
+  //       })
+  //       console.log(typeof this.state.allQuestions[0].question)
+  //     })
+  //     .catch(err => {
+  //       console.log(err.message)
+  //     })
+  //   }
   render() {
     return (
       <div>
