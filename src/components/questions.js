@@ -1,6 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Questions extends React.Component {
+import { fetchQuestions } from '../actions';
+console.log(fetchQuestions);
+
+class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,12 +31,34 @@ export default class Questions extends React.Component {
   //       console.log(err.message)
   //     })
   //   }
+  componentWillMount() {
+    this.props.fetchQuestions()
+  }
   render() {
+    const questionItems = this.state.questions.map(question => (
+      <div>
+        <h3>{question.question}</h3>
+        <p>{question.answer}</p>
+      </div>
+    ))
+
     return (
       <div>
         <p>{this.state.firstQuestion}</p>
         <p>{this.state.firstAnswer}</p>
+        <p>questionItems</p>
       </div>
     )
   }
 }
+
+Questions.PropTypes = {
+  fetchQuestions: PropTypes.func.isRequired,
+  questions: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+  questions: state.questions.items
+})
+
+export default connect(mapStateToProps, { fetchQuestions})(Questions);
